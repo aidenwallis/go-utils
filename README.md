@@ -1,6 +1,6 @@
 # go-utils
 
-[![codecov](https://codecov.io/gh/aidenwallis/go-utils/branch/main/graph/badge.svg?token=AT2T41NQ7K)](https://codecov.io/gh/aidenwallis/go-utils) [![Go Reference](https://pkg.go.dev/badge/github.com/aidenwallis/go-utils.svg)](https://pkg.go.dev/github.com/aidenwallis/go-ratelimiting)
+[![codecov](https://codecov.io/gh/aidenwallis/go-utils/branch/main/graph/badge.svg?token=AT2T41NQ7K)](https://codecov.io/gh/aidenwallis/go-utils) [![Go Reference](https://pkg.go.dev/badge/github.com/aidenwallis/go-utils.svg)](https://pkg.go.dev/github.com/aidenwallis/go-utils)
 
 A set of common Go utils I use throughout my projects, such as [Fossabot](https://fossabot.com).
 
