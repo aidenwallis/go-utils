@@ -1,6 +1,6 @@
 package utils
 
-// InvertMap inverts the map keys and tokens
+// InvertMap inverts the map keys and values
 func InvertMap[K comparable, V comparable](m map[K]V) map[V]K {
 	resp := make(map[V]K)
 	for k, v := range m {
