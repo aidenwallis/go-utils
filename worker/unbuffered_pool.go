@@ -28,11 +28,6 @@ func NewUnbufferedPool() *UnbufferedPoolImpl {
 	return &UnbufferedPoolImpl{}
 }
 
-// Interface is a convenience method which gives you the same instance as an interface.
-func (w *UnbufferedPoolImpl) Interface() UnbufferedPool {
-	return w
-}
-
 // Do increments the wait group and invokes the goroutine, then decrements it.
 func (w *UnbufferedPoolImpl) Do(cb func()) {
 	w.WaitGroup.Add(1)
