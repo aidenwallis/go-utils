@@ -20,7 +20,7 @@ type BufferedPool interface {
 // compile time assertion
 var _ BufferedPool = (*BufferedPoolImpl)(nil)
 
-// PoolImpl is an implementation that is compatible with Pool
+// BufferedPoolImpl is an implementation that is compatible with Pool
 type BufferedPoolImpl struct {
 	closeOnce sync.Once
 
@@ -31,6 +31,7 @@ type BufferedPoolImpl struct {
 	WaitGroup sync.WaitGroup
 }
 
+// NewBufferedPool creates a new instance of BufferedPoolImpl
 func NewBufferedPool(workers, maxQueue int) *BufferedPoolImpl {
 	w := &BufferedPoolImpl{
 		Tasks: make(chan func(), maxQueue),
