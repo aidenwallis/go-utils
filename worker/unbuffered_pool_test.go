@@ -4,8 +4,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/worker"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestUnbufferedPool(t *testing.T) {

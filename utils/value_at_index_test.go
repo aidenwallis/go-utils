@@ -3,9 +3,9 @@ package utils_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/utils"
 	"github.com/aidenwallis/go-utils/val"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestValueAtIndex(t *testing.T) {
@@ -52,7 +52,7 @@ func TestValueAtIndex(t *testing.T) {
 
 		{
 			r, ok := utils.ValueAtIndex(v, 1)
-			assert.Nil(t, r)
+			assert.Equal(t, nil, r)
 			assert.False(t, ok)
 		}
 	}

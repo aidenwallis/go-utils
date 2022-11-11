@@ -3,8 +3,8 @@ package utils_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/utils"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestTernary(t *testing.T) {

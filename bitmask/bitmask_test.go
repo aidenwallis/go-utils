@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/aidenwallis/go-utils/bitmask"
-	"github.com/stretchr/testify/assert"
+	"github.com/aidenwallis/go-utils/internal/assert"
 )
 
 func TestBits(t *testing.T) {
