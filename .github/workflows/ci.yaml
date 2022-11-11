@@ -1,0 +1,70 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+  # Optional: allow read access to pull request. Use with `only-new-issues` option.
+  pull-requests: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: lint | ${{ matrix.go_version }}
+    strategy:
+      matrix:
+        go_version: [1.18, 1.19]
+    steps:
+    - uses: actions/setup-go@v3
+      with:
+        go-version: ${{ matrix.go_version }}
+    - uses: actions/checkout@v3
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v3
+      with:
+        # Optional: working directory, useful for monorepos
+        # working-directory: somedir
+
+        # Optional: golangci-lint command line arguments.
+        # args: --issues-exit-code=0
+
+        # Optional: show only new issues if it's a pull request. The default value is `false`.
+        only-new-issues: true
+
+        # Optional: if set to true then the all caching functionality will be complete disabled,
+        #           takes precedence over all other caching options.
+        # skip-cache: true
+
+        # Optional: if set to true then the action don't cache or restore ~/go/pkg.
+        # skip-pkg-cache: true
+
+        # Optional: if set to true then the action don't cache or restore ~/.cache/go-build.
+        # skip-build-cache: true
+  test:
+    name: test | ${{ matrix.go_version }}
+    strategy:
+      matrix:
+        go_version: [1.18, 1.19]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup go ${{ matrix.go_version }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go_version }}
+      id: go
+
+    - name: Checkout code
+      uses: actions/checkout@v1
+
+    - name: Make out dir
+      run: |
+        mkdir out
+
+    - name: Run tests
+      run: |
+        go test -race ./... -coverprofile=out/coverage.txt -covermode=atomic
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v2
+      with:
+        files: out/coverage.txt
