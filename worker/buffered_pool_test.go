@@ -4,8 +4,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/worker"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestBufferedPool(t *testing.T) {
@@ -29,7 +29,7 @@ func TestBufferedPool(t *testing.T) {
 
 		pool.WaitAndClose()
 
-		assert.Len(t, outputs, 20)
+		assert.Equal(t, len(outputs), 20)
 	})
 
 	t.Run("try to write to filled queue", func(t *testing.T) {

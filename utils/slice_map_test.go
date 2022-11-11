@@ -3,8 +3,8 @@ package utils_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/utils"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestSliceMap(t *testing.T) {
@@ -37,5 +37,8 @@ func TestSliceMap(t *testing.T) {
 		}{a: v.a, b: v.a + 1}
 	}
 
-	assert.Equal(t, output, utils.SliceMap(input, iterator))
+	for i, v := range utils.SliceMap(input, iterator) {
+		assert.Equal(t, output[i].a, v.a)
+		assert.Equal(t, output[i].b, v.b)
+	}
 }

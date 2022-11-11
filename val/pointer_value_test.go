@@ -3,8 +3,8 @@ package val_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/val"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestPointerValue(t *testing.T) {

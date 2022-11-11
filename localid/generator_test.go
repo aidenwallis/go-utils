@@ -3,8 +3,8 @@ package localid_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/localid"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestLocalID(t *testing.T) {

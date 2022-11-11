@@ -3,8 +3,8 @@ package mathutil_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/mathutil"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestMin(t *testing.T) {

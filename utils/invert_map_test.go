@@ -3,8 +3,8 @@ package utils_test
 import (
 	"testing"
 
+	"github.com/aidenwallis/go-utils/internal/assert"
 	"github.com/aidenwallis/go-utils/utils"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestInvertMap(t *testing.T) {
@@ -22,5 +22,7 @@ func TestInvertMap(t *testing.T) {
 		3: "c",
 	}
 
-	assert.EqualValues(t, output, utils.InvertMap(input))
+	for k, v := range input {
+		assert.Equal(t, v, utils.InvertMap(output)[k])
+	}
 }
