@@ -1,4 +1,4 @@
-name: Lint Go Code
+name: CI
 
 on: [push, pull_request]
 
@@ -10,7 +10,7 @@ permissions:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: ${{ matrix.go_version }}
+    name: lint | ${{ matrix.go_version }}
     strategy:
       matrix:
         go_version: [1.18, 1.19]
@@ -40,3 +40,31 @@ jobs:
 
         # Optional: if set to true then the action don't cache or restore ~/.cache/go-build.
         # skip-build-cache: true
+  test:
+    name: test | ${{ matrix.go_version }}
+    strategy:
+      matrix:
+        go_version: [1.18, 1.19]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup go ${{ matrix.go_version }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go_version }}
+      id: go
+
+    - name: Checkout code
+      uses: actions/checkout@v1
+
+    - name: Make out dir
+      run: |
+        mkdir out
+
+    - name: Run tests
+      run: |
+        go test -race ./... -coverprofile=out/coverage.txt -covermode=atomic
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v2
+      with:
+        files: out/coverage.txt
