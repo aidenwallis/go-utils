@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: test | ${{ matrix.go_version }}
+    name: ${{ matrix.go_version }}
     strategy:
       matrix:
         go_version: [1.18, 1.19]

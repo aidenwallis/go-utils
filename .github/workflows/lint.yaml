@@ -10,7 +10,7 @@ permissions:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: lint | ${{ matrix.go_version }}
+    name: ${{ matrix.go_version }}
     strategy:
       matrix:
         go_version: [1.18, 1.19]
