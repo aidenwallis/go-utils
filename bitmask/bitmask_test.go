@@ -20,4 +20,7 @@ func TestBits(t *testing.T) {
 	assert.Equal(t, a, bitmask.Remove(a|b, b))
 	assert.True(t, bitmask.Has(a|b, b))
 	assert.False(t, bitmask.Has(a|b, c))
+
+	assert.Equal(t, a|b, bitmask.Toggle(a, b))
+	assert.Equal(t, b, bitmask.Toggle(a|b, a))
 }

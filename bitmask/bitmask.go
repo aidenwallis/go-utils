@@ -24,3 +24,11 @@ func Remove[T Bit](sum, bit T) T {
 func Has[T Bit](sum, bit T) bool {
 	return (sum & bit) == bit
 }
+
+// Toggle will either add or remove bit from sum depending on whether it currently exists in the bitmask.
+func Toggle[T Bit](sum, bit T) T {
+	if Has(sum, bit) {
+		return Remove(sum, bit)
+	}
+	return Add(sum, bit)
+}
