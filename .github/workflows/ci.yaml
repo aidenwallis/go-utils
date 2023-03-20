@@ -14,11 +14,13 @@ permissions:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
     name: lint | ${{ matrix.go_version }}
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        go_version: [1.18, 1.19]
+        go_version: ["1.18", "1.19", "1.20"]
+
     steps:
     - uses: actions/setup-go@v3
       with:
