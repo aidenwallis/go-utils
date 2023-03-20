@@ -50,7 +50,7 @@ jobs:
     name: test | ${{ matrix.go_version }}
     strategy:
       matrix:
-        go_version: [1.18, 1.19]
+        go_version: [1.18, 1.19, 1.20]
     runs-on: ubuntu-latest
     steps:
     - name: Setup go ${{ matrix.go_version }}
