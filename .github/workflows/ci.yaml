@@ -71,6 +71,5 @@ jobs:
     steps:
     - name: Check that steps completed successfully
       run: |
-        desired_outcome = "success";
-        [[ "${{ needs.lint.result }}" != $desired_outcome ]] || echo "Linting must succeed, received status: ${{ needs.lint.result }}" && exit 1;
-        [[ "${{ needs.test.result }}" != $desired_outcome ]] || echo "Linting must succeed, received status: ${{ needs.test.result }}" && exit 1;
+        [[ "${{ needs.lint.result }}" != "success" ]] || echo "Linting must succeed, received status: ${{ needs.lint.result }}" && exit 1;
+        [[ "${{ needs.test.result }}" != "success" ]] || echo "Tests must succeed, received status: ${{ needs.test.result }}" && exit 1;
