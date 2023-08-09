@@ -71,5 +71,8 @@ jobs:
     steps:
     - name: Check that all steps completed
       run: |
-        [[ "${{ needs.lint.result }}" != "success" ]] && exit 1;
-        [[ "${{ needs.test.result }}" != "success" ]] && exit 1;
+        [ "${{ needs.lint.result }}" != "success" ] && echo "Linting failed." && exit 1;
+        [ "${{ needs.test.result }}" != "success" ] && echo "Tests failed." && exit 1;
+
+        echo "All steps succeeded!";
+        exit 0;
