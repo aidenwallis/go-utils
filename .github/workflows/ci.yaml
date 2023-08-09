@@ -22,7 +22,7 @@ jobs:
         go_version: ["1.18", "1.19", "1.20", "1.21"]
 
     steps:
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go_version }}
     - uses: actions/checkout@v3
