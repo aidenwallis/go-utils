@@ -19,34 +19,17 @@ jobs:
 
     strategy:
       matrix:
-        go_version: ["1.18", "1.19", "1.20"]
+        go_version: ["1.18", "1.19", "1.20", "1.21"]
 
     steps:
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go_version }}
     - uses: actions/checkout@v3
     - name: golangci-lint
       uses: golangci/golangci-lint-action@v3
       with:
-        # Optional: working directory, useful for monorepos
-        # working-directory: somedir
-
-        # Optional: golangci-lint command line arguments.
-        # args: --issues-exit-code=0
-
-        # Optional: show only new issues if it's a pull request. The default value is `false`.
         only-new-issues: true
-
-        # Optional: if set to true then the all caching functionality will be complete disabled,
-        #           takes precedence over all other caching options.
-        # skip-cache: true
-
-        # Optional: if set to true then the action don't cache or restore ~/go/pkg.
-        # skip-pkg-cache: true
-
-        # Optional: if set to true then the action don't cache or restore ~/.cache/go-build.
-        # skip-build-cache: true
 
   test:
     name: test | ${{ matrix.go_version }}
@@ -58,7 +41,7 @@ jobs:
 
     steps:
     - name: Setup go ${{ matrix.go_version }}
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go_version }}
       id: go
@@ -78,3 +61,18 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         files: out/coverage.txt
+
+  # Ensures all matrix jobs complete before passing the build
+  complete:
+    name: complete
+    if: ${{ always() }}
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check that all steps completed
+      run: |
+        [ "${{ needs.lint.result }}" != "success" ] && echo "Linting failed." && exit 1;
+        [ "${{ needs.test.result }}" != "success" ] && echo "Tests failed." && exit 1;
+
+        echo "All steps succeeded!";
+        exit 0;
