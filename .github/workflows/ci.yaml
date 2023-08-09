@@ -69,7 +69,7 @@ jobs:
     needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
-    - name: Check that steps completed successfully
+    - name: Check that all steps completed
       run: |
-        [[ "${{ needs.lint.result }}" != "success" ]] && echo "Linting must succeed, received status: ${{ needs.lint.result }}" && exit 1;
-        [[ "${{ needs.test.result }}" != "success" ]] && echo "Tests must succeed, received status: ${{ needs.test.result }}" && exit 1;
+        [[ "${{ needs.lint.result }}" != "success" ]] && exit 1;
+        [[ "${{ needs.test.result }}" != "success" ]] && exit 1;
